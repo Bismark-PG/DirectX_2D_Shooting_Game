@@ -74,9 +74,6 @@
   <ItemGroup>
     <None Include="ascii_texture_generator.py" />
     <None Include="DirectXTex.inl" />
-    <None Include="DirectXTex.pdb" />
-    <None Include="DirectXTex_Debug.pdb" />
-    <None Include="DirectXTex_Release.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="DirectXTex_Debug.lib" />

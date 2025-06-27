@@ -165,15 +165,6 @@
     <None Include="DirectXTex.inl">
       <Filter>ヘッダー ファイル\DirectX</Filter>
     </None>
-    <None Include="DirectXTex.pdb">
-      <Filter>リソース ファイル\DirectX</Filter>
-    </None>
-    <None Include="DirectXTex_Debug.pdb">
-      <Filter>リソース ファイル\DirectX</Filter>
-    </None>
-    <None Include="DirectXTex_Release.pdb">
-      <Filter>リソース ファイル\DirectX</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="DirectXTex_Debug.lib">

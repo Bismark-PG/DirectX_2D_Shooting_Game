@@ -6,10 +6,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-void Player_Initialize(const XMFLOAT2& Position);
+#include <DirectXMath.h>
+
+void Player_Initialize(const DirectX::XMFLOAT2& Position);
 void Player_Finalize();
 
-void Player_Update(double elapsed_time);
+void Player_Update(double elapsed_time, float Speed);
 void Player_Draw();
 
 #endif // PLAYER_H

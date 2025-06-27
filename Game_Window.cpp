@@ -96,7 +96,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	    break;
 
 	case WM_CLOSE:
-		if (MessageBox(hWnd, "WARNING.", "Really?", MB_OKCANCEL) == IDOK)
+		if (MessageBox(hWnd, "Really Want Exit Game?", "WARNING.", MB_OKCANCEL) == IDOK)
 			DestroyWindow(hWnd);
 		break;
 	case WM_DESTROY:
