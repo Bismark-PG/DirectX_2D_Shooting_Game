@@ -39,6 +39,4 @@ void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh,
 			   	 float px, float py, float pw, float ph, float angle = 0,
 			     const DirectX::XMFLOAT4& color = { 1.0f, 1.0f, 1.0f, 1.0f });
 
-void Sprite_Draw(float dx, float dy, float dw, float dh);
-
 #endif // SPRITE_H

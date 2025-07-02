@@ -8,9 +8,15 @@
 #include <string>
 #include "DirectXTex.h"
 using namespace DirectX;
+#include <sstream>
+#include <windows.h>
 
 // Max Manage Texture Count
 static constexpr int TEXTURE_MAX = 256;
+
+// 注意！初期化で外部から設定されるもの。Release不要。
+static ID3D11Device* g_pDevice = nullptr;
+static ID3D11DeviceContext* g_pContext = nullptr;
 
 struct Texture
 {
@@ -23,9 +29,6 @@ struct Texture
 static Texture g_Textures[TEXTURE_MAX]{};
 static int g_SetTextureIndex = -1;
 
-// 注意！初期化で外部から設定されるもの。Release不要。
-static ID3D11Device* g_pDevice = nullptr;
-static ID3D11DeviceContext* g_pContext = nullptr;
 
 // Reset Management Texture
 void Texture_Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
@@ -62,8 +65,7 @@ int Texture_Load(const wchar_t* FileName)
 	// Find Empty Space
 	for (int i = 0; i < TEXTURE_MAX; i++)
 	{
-		if (g_Textures[i].pTexture)
-			continue; // If Using >> Continue
+		if (g_Textures[i].pTexture) continue; // If Using >> Continue
 
 		// Read Texture
 		TexMetadata metadata;
@@ -78,6 +80,23 @@ int Texture_Load(const wchar_t* FileName)
 			return -1;
 		}
 		
+#if defined(DEBUG) || defined(_DEBUG)
+		// MessageBoxA(nullptr, "Texture Debug Point Reached", "Info", MB_OK);
+
+		std::stringstream ss;
+		ss << "--- Texture Load Debug ---\n";
+		ss << "Filename: (pointer) " << FileName << "\n";
+		ss << "Image Count: " << image.GetImageCount() << "\n";
+		ss << "Image Pointer: " << image.GetImages() << "\n";
+		ss << "Format: " << metadata.format << "\n";
+		ss << "Device: " << g_pDevice << "\n";
+		OutputDebugStringA(ss.str().c_str());
+#endif	
+
+		std::wstring Temp_Filename = FileName;
+		unsigned int Temp_Width = (unsigned int)metadata.width;
+		unsigned int Temp_Height = (unsigned int)metadata.height;
+
 		// Get File Info
 		g_Textures[i].filename = FileName;
 		g_Textures[i].width = (unsigned int)metadata.width;
@@ -85,6 +104,15 @@ int Texture_Load(const wchar_t* FileName)
 
 		hr = CreateShaderResourceView(g_pDevice,
 			image.GetImages(), image.GetImageCount(), metadata, &g_Textures[i].pTexture);
+
+		if (FAILED(hr)) {
+			MessageBoxW(nullptr, L"Failed to create SRV", FileName, MB_OK | MB_ICONERROR);
+			return -1;
+		}
+		
+		g_Textures[i].filename = Temp_Filename;
+		g_Textures[i].width = Temp_Width;
+		g_Textures[i].height = Temp_Height;
 
 		return i;
 	}
@@ -107,8 +135,7 @@ void Texture_SetTexture(int TexID)
 		return;
 
 	// If Now Reading Texture is Read Already
-	if (g_SetTextureIndex == TexID)
-		return;
+	if (g_SetTextureIndex == TexID) return;
 
 	g_SetTextureIndex = TexID;
 
@@ -119,8 +146,7 @@ void Texture_SetTexture(int TexID)
 unsigned int Texture_Width(int TexID)
 {
 	// Safe Triger
-	if (TexID < 0)
-		return 0;
+	if (TexID < 0) return 0;
 
 	return g_Textures[TexID].width;
 }
@@ -128,8 +154,7 @@ unsigned int Texture_Width(int TexID)
 unsigned int Texture_Height(int TexID)
 {
 	// Safe Triger
-	if (TexID < 0)
-		return 0;
+	if (TexID < 0) return 0;
 
 	return g_Textures[TexID].height;
 }

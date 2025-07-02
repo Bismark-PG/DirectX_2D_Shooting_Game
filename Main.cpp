@@ -43,7 +43,12 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	Shader_Initialize(Direct3D_GetDevice(), Direct3D_GetContext());
 	Texture_Initialize(Direct3D_GetDevice(), Direct3D_GetContext());
 	Sprite_Initialize(Direct3D_GetDevice(), Direct3D_GetContext());
+
+	// Game Draw
 	SpriteAni_Initialize();
+	Game_Initialize();
+
+	int w = Texture_Load(L"Resource/Texture/Black.png");
 
 	hal::DebugText dt(Direct3D_GetDevice(), Direct3D_GetContext(),
 		L"Resource/consolab_ascii_512.png",
@@ -107,8 +112,9 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 				// Draw Texture
 				Direct3D_Clear();
-
 				Sprite_Begin();
+
+				Sprite_Draw(w, 0.f, 0.f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT, { 1.f, 1.f, 1.f, 1.f });
 
 				Game_Draw();
 

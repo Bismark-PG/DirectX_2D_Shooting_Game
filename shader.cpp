@@ -13,10 +13,11 @@ using namespace DirectX;
 
 static ID3D11VertexShader* g_pVertexShader = nullptr;
 static ID3D11InputLayout* g_pInputLayout = nullptr;
-static ID3D11Buffer* g_pVSConstantBuffer0 = nullptr; // 定数バッファ b0
-static ID3D11Buffer* g_pVSConstantBuffer1 = nullptr; // 定数バッファ b1
 static ID3D11PixelShader* g_pPixelShader = nullptr;
 static ID3D11SamplerState* g_pSamplerState = nullptr;
+
+static ID3D11Buffer* g_pVSConstantBuffer0 = nullptr; // 定数バッファ b0
+static ID3D11Buffer* g_pVSConstantBuffer1 = nullptr; // 定数バッファ b1
 
 // 注意！初期化で外部から設定されるもの。Release不要。
 static ID3D11Device* g_pDevice = nullptr;

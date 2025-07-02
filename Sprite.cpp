@@ -5,6 +5,7 @@
 ==============================================================================*/
 #include <d3d11.h>
 #include <DirectXMath.h>
+#include "DirectXTex.h"
 using namespace DirectX;
 #include "direct3d.h"
 #include "shader.h"	
@@ -50,19 +51,6 @@ void Sprite_Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 	bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
 	g_pDevice->CreateBuffer(&bd, NULL, &g_pVertexBuffer);
-
-	/*// Read Texture
-	TexMetadata metadata;
-	ScratchImage image;
-
-	LoadFromWICFile(L"knight_more_new.png", WIC_FLAGS_NONE, &metadata, image);
-	HRESULT hr = CreateShaderResourceView(g_pDevice,
-		image.GetImages(), image.GetImageCount(), metadata, &g_pTexture);
-
-	if (FAILED(hr))
-	{
-		MessageBox(nullptr, "Failed read texture", "ERROR", MB_OK | MB_ICONERROR);
-	}*/
 }
 
 void Sprite_Finalize(void)

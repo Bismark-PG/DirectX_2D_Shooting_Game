@@ -8,7 +8,7 @@
 #include "debug_ostream.h"
 
 #pragma comment(lib, "d3d11.lib")
-// #pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "dxgi.lib")
 
 #if defined(DEBUG) || defined(_DEBUG)
 	#pragma comment(lib, "DirectXTex_Debug.lib")
@@ -154,11 +154,10 @@ bool Direct3D_Initialize(HWND hWnd)
 
 void Direct3D_Finalize()
 {
-	SAFE_RELEASE(g_pBlendStateMultiply);
-	SAFE_RELEASE(g_pDepthStencilStateDepthDisable);
-
 	releaseBackBuffer();
 
+	SAFE_RELEASE(g_pDepthStencilStateDepthDisable);
+	SAFE_RELEASE(g_pBlendStateMultiply);
 	SAFE_RELEASE(g_pSwapChain);
 	SAFE_RELEASE(g_pDeviceContext);
 	SAFE_RELEASE(g_pDevice);
