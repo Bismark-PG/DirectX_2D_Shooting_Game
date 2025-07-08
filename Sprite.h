@@ -19,7 +19,7 @@ void Sprite_Draw(int Tex_ID, float dx, float dy,
 				 const DirectX::XMFLOAT4& color = { 1.0f, 1.0f, 1.0f, 1.0f }); // White Color
 
 // Show All Texture (Can Change Size)
-void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh,
+void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh, float angle,
 				 const DirectX::XMFLOAT4& color = { 1.0f, 1.0f, 1.0f, 1.0f });
 
 // Cut UV

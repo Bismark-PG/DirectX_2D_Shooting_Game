@@ -34,6 +34,7 @@ struct AniPlayData
 	int PatternNUM = 0;
 	// Accumulated Time
 	double Accumulated_Time = 0.0;
+	bool IsStopped{ false };
 };
 
 static constexpr int ANI_PATTERN_MAX = 128;
@@ -47,10 +48,11 @@ void SpriteAni_Initialize()
 	for (AniPatternData& data : g_AniPattern)
 		data.TextureID = -1; // Initialize Texture ID
 
-	// Set Animation Pattern ID
-	// g_AniPlay[0].PatternID = 0;
-	// g_AniPlay[1].PatternID = 1;
-	// g_AniPlay[2].PatternID = 2;
+	for (AniPlayData& data : g_AniPlay)
+	{
+		data.PatternID = -1;
+		data.IsStopped = false;
+	}
 }
 
 void SpriteAni_Finalize()
@@ -81,6 +83,7 @@ void SpriteAni_Update(double elapsed_time)
 				else // Stop Animation at Last Pattern
 				{
 					g_AniPlay[i].PatternNUM = pAniPatternData->PatternMAX - 1;
+					g_AniPlay[i].IsStopped = true;
 				}
 			}
 			g_AniPlay[i].Accumulated_Time -= pAniPatternData->PatternPlayTime;
@@ -150,4 +153,15 @@ int SpriteAni_CreatePlayer(int AniPatternID)
 		return i; // Return Set Pattern ID
 	}
 	return -1; // If No More Space, Return -1
+}
+
+bool SpriteAni_IsStopped(int Index)
+{
+
+	return g_AniPlay[Index].IsStopped;
+}
+
+void SpriteAni_DestroyPlayer(int Index)
+{
+	g_AniPlay[Index].PatternID = -1;
 }

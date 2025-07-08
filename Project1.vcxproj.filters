@@ -44,12 +44,21 @@
     <Filter Include="リソース ファイル\DirectX">
       <UniqueIdentifier>{652ba473-040b-4a5e-80ff-97d348c30dee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Draw Resource">
+      <UniqueIdentifier>{01f5472c-2498-4d81-91d0-87946dd77654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Draw Resource">
+      <UniqueIdentifier>{41de7800-0864-40f5-89d5-e65f0535a70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Tools">
+      <UniqueIdentifier>{e7171e4d-49e5-4c22-9ad5-2eb6da3b130a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Tools">
+      <UniqueIdentifier>{41da89c0-5f21-4ee0-bb0a-db1d7466a670}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="debug_ostream.cpp">
@@ -91,20 +100,29 @@
     <ClCompile Include="Game_Window.cpp">
       <Filter>ソース ファイル\Setting</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Draw Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\Draw Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Draw Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Spawner.cpp">
+      <Filter>ソース ファイル\Draw Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>ソース ファイル\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>ソース ファイル\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>ソース ファイル\Draw Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="debug_ostream.h">
       <Filter>ヘッダー ファイル\Debug</Filter>
     </ClInclude>
@@ -147,8 +165,26 @@
     <ClInclude Include="Game_Window.h">
       <Filter>ヘッダー ファイル\Setting</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\Draw Resource</Filter>
+    </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Draw Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Spawner.h">
+      <Filter>ヘッダー ファイル\Draw Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル\Draw Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>ヘッダー ファイル\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>ヘッダー ファイル\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>ヘッダー ファイル\Draw Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

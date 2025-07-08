@@ -123,7 +123,7 @@ void Sprite_Draw(int Tex_ID, float dx, float dy, const DirectX::XMFLOAT4& color)
 }
 
 // Show All Texture (Can Change Size)
-void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh, const DirectX::XMFLOAT4& color)
+void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh, float angle, const DirectX::XMFLOAT4& color)
 {
 	// シェーダーを描画パイプラインに設定
 	Shader_Begin();
@@ -137,10 +137,10 @@ void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh, const Direc
 
 	// 頂点情報を書き込み
 	// 画面の左上から右下に向かう線分を描画する
-	v[0].position = { dx,		dy,      0.0f };
-	v[1].position = { dx + dw,	dy,      0.0f };
-	v[2].position = { dx,		dy + dh, 0.0f };
-	v[3].position = { dx + dw,	dy + dh, 0.0f };
+	v[0].position = { -0.5f,	-0.5f,	0.0f }; // 左上
+	v[1].position = { +0.5f,	-0.5f,	0.0f }; // 右上
+	v[2].position = { -0.5f,	+0.5f,	0.0f }; // 左下
+	v[3].position = { +0.5f,	+0.5f,	0.0f }; // 右下
 
 	v[0].color = color;
 	v[1].color = color;
@@ -153,12 +153,19 @@ void Sprite_Draw(int Tex_ID, float dx, float dy, float dw, float dh, const Direc
 	v[2].UV = { 0.0f, 1.0f };
 	v[3].UV = { 1.0f, 1.0f };
 
-	// Auto Reset
-	// If You Want Rotate Or Move Many Texture Use This In Main
-	Shader_SetWorldMatrix(XMMatrixIdentity());
-	
 	// 頂点バッファのロックを解除
 	g_pContext->Unmap(g_pVertexBuffer, 0);
+
+	// Rotation Shader Setting
+	XMMATRIX Scale = XMMatrixScaling(dw, dh, 1.0f); // Scale
+	XMMATRIX Rotation = XMMatrixRotationZ(angle); // Rotation
+	XMMATRIX Translation = XMMatrixTranslation(dx + (dw / 2), dy + (dh / 2), 0.0f); // 平行移動
+
+	Shader_SetWorldMatrix(Scale * Rotation * Translation);
+
+	// Auto Reset
+	// If You Want Rotate Or Move Many Texture Use This In Main
+	// Shader_SetWorldMatrix(XMMatrixIdentity());
 
 	// 頂点バッファを描画パイプラインに設定
 	UINT stride = sizeof(Vertex);

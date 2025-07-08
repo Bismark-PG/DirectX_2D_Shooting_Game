@@ -19,9 +19,6 @@
 #include "mouse.h"
 #include "Game.h"
 
-const constexpr int SCREEN_WIDTH = 1920;
-const constexpr int SCREEN_HEIGHT = 1080;
-
 float angle{ 0.0f };
 float Position_X = 0.0f;
 float Position_Y = 0.0f;
@@ -32,13 +29,16 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 {
 	CoInitializeEx(nullptr, COINIT_MULTITHREADED); // (void)
 
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+
 	HWND hWnd = GameWindowCreate(hInstance);
 
-	// Read Start Initialize Function
+	// Initialize System Tools
 	SystemTimer_Initialize();
 	KeyLogger_Initialize();
 	Mouse_Initialize(hWnd);
 
+	// Initialize Draw Tools
 	Direct3D_Initialize(hWnd);
 	Shader_Initialize(Direct3D_GetDevice(), Direct3D_GetContext());
 	Texture_Initialize(Direct3D_GetDevice(), Direct3D_GetContext());
@@ -105,16 +105,15 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 				// Set Key Logger With FPS
 				KeyLogger_Update();
 
-				Game_Update(Elapsed_Time);
-
 				// Update Game Texture
+				Game_Update(Elapsed_Time);
 				SpriteAni_Update(Elapsed_Time);
 
 				// Draw Texture
 				Direct3D_Clear();
 				Sprite_Begin();
 
-				Sprite_Draw(w, 0.f, 0.f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT, { 1.f, 1.f, 1.f, 1.f });
+				Sprite_Draw(w, 0.f, 0.f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT, 0.f);
 
 				Game_Draw();
 

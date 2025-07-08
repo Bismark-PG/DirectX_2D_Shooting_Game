@@ -20,4 +20,7 @@ int SpriteAni_Get_Pattern_Info(int TexID, int PMax, int HPatternMax,
 
 int SpriteAni_CreatePlayer(int AniPatternID);
 
+bool SpriteAni_IsStopped(int Index);
+void SpriteAni_DestroyPlayer(int Index);
+
 #endif // SPRITE_ANIMATION_H

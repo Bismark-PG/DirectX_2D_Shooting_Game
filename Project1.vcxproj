@@ -20,9 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="debug_ostream.cpp" />
     <ClCompile Include="debug_text.cpp" />
     <ClCompile Include="direct3d.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Enemy_Spawner.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_Window.cpp" />
     <ClCompile Include="keyboard.cpp" />
@@ -38,10 +42,14 @@
     <ClCompile Include="WICTextureLoader11.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="debug_ostream.h" />
     <ClInclude Include="debug_text.h" />
     <ClInclude Include="direct3d.h" />
     <ClInclude Include="DirectXTex.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy_Spawner.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game_Window.h" />
     <ClInclude Include="KeyLogger.h" />
